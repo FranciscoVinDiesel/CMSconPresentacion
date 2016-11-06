@@ -126,4 +126,15 @@ class Noticia extends \yii\db\ActiveRecord
             ],            
         ];
     }
+    public function getAlleft($slug){
+        
+        $query=new \yii\db\Query();
+        $query->select( ['noticia.*','noticia.titulo AS nTitulo','noticia.detalle AS nDetalle','noticia.categoria_id AS nCategoria','noticia.created_by AS nAutor','noticia.created_at AS nFecha'])->from('noticia')->where(['noticia.seo_slug'=>$slug]);
+        $cmd=$query->createCommand();
+        $noticia=$cmd->queryAll();
+        return $noticia;
+        
+        
+        
+    }
 }

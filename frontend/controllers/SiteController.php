@@ -209,7 +209,7 @@ class SiteController extends Controller
     {
         $categorias = \common\models\Categoria::find()->all();
         
-        $noticia = \common\models\Noticia::find("seo_slug = :slug", [":slug" => $slug])->one();
+        $noticia = \common\models\Noticia::getAlleft($slug);
         
     
 
