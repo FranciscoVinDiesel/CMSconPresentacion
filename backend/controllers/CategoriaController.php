@@ -115,14 +115,24 @@ class CategoriaController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
-
+         $model = $this->findModel($id);
+        $categoria=  Categoria::findOne(['id'=>$id]);
+        $creado_por=\yii\helpers\ArrayHelper::getValue($categoria, 'created_by');   
+        //print_r(\yii\helpers\ArrayHelper::getValue($noticia, 'created_by'));die;
+        //Yii::$app->user->identity
+        
+        if ($creado_por == Yii::$app->user->getId()){
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
             ]);
+        }            
+        }else {
+            \Yii::$app->getSession()->setFlash('info', 'No tiene permisos para editar noticias que no ha publicado');
+            $this->redirect(['categoria/index']);
+            
         }
     }
 
@@ -134,9 +144,18 @@ class CategoriaController extends Controller
      */
     public function actionDelete($id)
     {
+          $categoria=  Categoria::findOne(['id'=>$id]);
+        $creado_por=\yii\helpers\ArrayHelper::getValue($categoria, 'created_by');
+        
+       if ($creado_por == Yii::$app->user->getId()){
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+       }else{
+           \Yii::$app->getSession()->setFlash('info', 'No tiene permisos para borrar noticias que no ha publicado');
+            $this->redirect(['categoria/index']); 
+           
+       }
     }
 
     /**

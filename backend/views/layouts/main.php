@@ -19,7 +19,7 @@ AppAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
+    <title>CMS</title>
     <?php $this->head() ?>
 </head>
 <body>
@@ -28,15 +28,18 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'My Company',
+        'brandLabel' => 'MI CMS',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'Administracion', 'url' => ['/user/admin'], 'visible' => !Yii::$app->user->isGuest],
+        ['label' => 'Inicio', 'url' => ['/site/index']],
+        ['label' => 'Noticia', 'url' => ['/noticia/index'] , 'visible' => !Yii::$app->user->isGuest],
+        // ['label' => 'Comentario', 'url' => ['/noticia/index'] , 'visible' => !Yii::$app->user->isGuest],
+         ['label' => 'Categoria', 'url' => ['/categoria/index'] , 'visible' => !Yii::$app->user->isGuest],
+        ['label' => 'Administracion', 'url' => ['/user/admin'], 'visible' => Yii::$app->user->can('admin')],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/user/security/login']];

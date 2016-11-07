@@ -20,7 +20,7 @@ AppAsset::register($this);
         <meta charset="<?= Yii::$app->charset ?>">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <?= Html::csrfMetaTags() ?>
-        <title><?= Html::encode($this->title) ?></title>
+        <title>CMS</title>
 
 <!--        <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -54,7 +54,7 @@ AppAsset::register($this);
                         <span class="sr-only">Toggle navigation</span>
                         Menu <i class="fa fa-bars"></i>
                     </button>
-                    <a class="navbar-brand" href="index.html">Francisco Mecia</a>
+                    <a class="navbar-brand" target="_blank" href="https://www.facebook.com/PenchoVinDiesel">Francisco Mecia</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -86,11 +86,11 @@ AppAsset::register($this);
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading">
+                     
                         
-                        
-                        
-                        <h2 class="subheading"><?=Yii::$app->controller->titulo ?></h2>
-                        <span class="meta">Posted by <a href="#"><?=Yii::$app->controller->autor ?></a> <?=Yii::$app->controller->fecha ?></span>
+                        <h1 class="subheading"><?=Yii::$app->controller->titulo ?></h1>
+                        <span class="meta">Publicado por <a href="#"> <?=     \yii\helpers\ArrayHelper::getValue(dektrium\user\models\User::findOne(['id'=> Yii::$app->controller->autor ]), 'username');   
+     ?></a> , el <?=Yii::$app->controller->fecha ?></span>
                     </div>
                 </div>
             </div>
@@ -100,7 +100,7 @@ AppAsset::register($this);
         <!-- Main Content -->
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="col-lg-12">
                     <?= $content ?>
                 </div>
             </div>
