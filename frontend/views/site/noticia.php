@@ -8,18 +8,30 @@ use kartik\alert\AlertBlock;
         return $noticia[0]['nTitulo'];
     }) ?></h1>
    
-    <h1><?= \yii\helpers\ArrayHelper::getValue($noticia, function($noticia,$defaultValue){
-        return $noticia[0]['nDetalle'];
-    }) ?></h1>
-    
-    <h1><?=     \yii\helpers\ArrayHelper::getValue(dektrium\user\models\User::findOne(['id'=>  \yii\helpers\ArrayHelper::getValue($noticia, function($noticia,$defaultValue){
+     <p><?=     \yii\helpers\ArrayHelper::getValue(dektrium\user\models\User::findOne(['id'=>  \yii\helpers\ArrayHelper::getValue($noticia, function($noticia,$defaultValue){
         return $noticia[0]['nAutor'];}) ]), 'username');   
-     ?></h1>
+     ?></p>
     
-    <h1><?=     \yii\helpers\ArrayHelper::getValue(\common\models\Categoria::findOne(['id'=>  \yii\helpers\ArrayHelper::getValue($noticia, function($noticia,$defaultValue){
+    <p><?=     \yii\helpers\ArrayHelper::getValue(\common\models\Categoria::findOne(['id'=>  \yii\helpers\ArrayHelper::getValue($noticia, function($noticia,$defaultValue){
         return $noticia[0]['nCategoria'];}) ]), 'categoria');   
-     ?></h1>
+     ?></p>
     
+    
+     <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <p><?= \yii\helpers\ArrayHelper::getValue($noticia, function($noticia,$defaultValue){
+        return $noticia[0]['nDetalle'];
+    }) ?></p>
+       </div>
+      </div>
+    </div>
+    </article>
+
+    <hr>
+    
+   
   
  
  

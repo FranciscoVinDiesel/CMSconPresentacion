@@ -21,6 +21,13 @@ class SiteController extends Controller
     /**
      * @inheritdoc
      */
+    public $layout= 'main';
+    
+    public $titulo ='';
+    public $fecha ='';
+    public $autor ='';
+    
+    
     public function behaviors()
     {
         return [
@@ -90,6 +97,7 @@ class SiteController extends Controller
                 'categorias'    => $categorias,
                 'pagination'    => $pagination,
                 'noticias'      => $noticias,
+              
             ]
         );
     }
@@ -207,12 +215,15 @@ class SiteController extends Controller
        
     public function actionNoticia($slug)
     {
+        $this->layout = 'layout_noticia';
         $categorias = \common\models\Categoria::find()->all();
         
         $noticia = \common\models\Noticia::getAlleft($slug);
         
-    
-
+        $aux=  \common\models\Noticia::findOne(['seo_slug'=>$slug]);
+        $this->titulo=\yii\helpers\ArrayHelper::getValue($aux, 'titulo');         
+        $this->autor=\yii\helpers\ArrayHelper::getValue($aux, 'created_by');
+        $this->fecha=\yii\helpers\ArrayHelper::getValue($aux, 'created_at');
         
         return $this->render(
             'noticia',
@@ -220,10 +231,16 @@ class SiteController extends Controller
                 //'comentario'     => $comentario,
                 'categorias'    => $categorias,
                 'noticia'       => $noticia,
+              
             ]
         );
     }
     
+      public function actionArticulos(){
+          
+          return $this->render('articulos');
+          
+      }
     
     
     /**
