@@ -69,6 +69,9 @@ AppAsset::register($this);
                             <a href="<?= \yii\helpers\Url::to(['/site/articulos'])?>">Articulos CIentificos</a>
                         </li>
                         <li>
+                            <a class="navbar-brand" target="_blank" href="http://fre1234.thefreecpanel.com/frontend/views/reveals">Presentación</a>
+                        </li>
+                        <li>
                             <a href="<?= \yii\helpers\Url::to(['/user/registration/register'])?>">Registrarse</a>
                         </li>
                     </ul>
